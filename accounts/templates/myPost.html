@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>My Posts</h2>
+    <div class="row">
+        {% for post in user_posts %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ post.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.content | truncatewords:20 }}</p>
+                    <p class="card-text">Author: {{ post.author.username }}</p>
+                    <p class="card-text">Date: {{ post.created_at }}</p>
+                    <form action="{% url 'delete-post' post.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <a href="{% url 'edit-post' post.id %}" class="btn btn-primary">Edit</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

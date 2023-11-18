@@ -1,0 +1,33 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Update Blog Post</h2>
+    <div class="card card-form">
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_title" class="form-label">Title</label>
+                    {{ form.title }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_content" class="form-label">Content</label>
+                    {{ form.content }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_image" class="form-label">Image</label>
+                    {{ form.image }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_category" class="form-label">Category</label>
+                    {{ form.category }}
+                </div>
+                <button type="submit" class="btn btn-outline-success">update Post</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
